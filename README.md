@@ -1,3 +1,3 @@
-## GBV Fitness Tracker
+## Greet API
 
-Fitness Tracker App attempt. Likely never to see the light of day.
+Social App attempt. Likely never to see the light of day.
