@@ -8,11 +8,13 @@ module.exports = {
 		res.send('heres yo info');
 	},
 	loginSuccess: function(req, res) {
-		res.send('lawls');
+		if(!!req.body.data && Array.isArray(req.body.data)) {
+			req.body.data.forEach(function(e, i, a) {
+				console.log('Element source:', e.source);
+			});
+		}
 	},
 	photoSuccess: function(req, res) {
-		// console.log('photo success:', req.body.type); 
-		console.log(req.body);
-		res.send('jokes');
+		// Edit photos route
 	}
 }
