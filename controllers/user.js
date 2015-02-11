@@ -10,6 +10,9 @@ module.exports = {
       res.json(users);
     });
   },
+  getSettings: function(req, res) {
+
+  },
   info: function(req,res) {
     res.send('heres yo info');
   },
@@ -40,5 +43,8 @@ module.exports = {
   },
   photoSuccess: function(req, res) {
     // Edit photos route
+  },
+  saveSettings: function(req, res) {
+    // Save settings for user preferences
   }
 }
