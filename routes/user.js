@@ -10,6 +10,7 @@ router.use(function(req, res, next) {
 // GET Routes
 router.get('/all', userController.allUsers);
 router.get('/settings', userController.getSettings);
+router.get('/trim', userController.trimUsers);
 
 // define the home page route
 router.post('/postlogin', userController.loginSuccess);

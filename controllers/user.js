@@ -5,8 +5,12 @@ var mongoose = require('mongoose'),
 
 module.exports = {
   allUsers: function(req, res) {
-    console.log('usrs');
     User.find({}).exec(function(err, users) {
+      var users = users.map(function(u) {
+        return { image : u.images[0], name : u.name};
+      });
+
+      console.log(JSON.stringify(users));
       res.json(users);
     });
   },
@@ -17,6 +21,7 @@ module.exports = {
     res.send('heres yo info');
   },
   loginSuccess: function(req, res) {
+    console.log('login success:', JSON.stringify(req.body));
     var images = [];
 
     for(var i = req.body.data.length - 1; i >= 0; i--) {
@@ -46,5 +51,21 @@ module.exports = {
   },
   saveSettings: function(req, res) {
     // Save settings for user preferences
+  },
+  trimUsers : function(req, res) {
+    User.find({ images : [] }).exec(function(err, users) {
+      if(err) console.error(err);
+
+      console.log('Users:', users[0]);
+      users.forEach(function(u, i, a) {
+        User.findOneAndRemove({ _id : u._id}, function(err) {
+          console.log('Deleted');
+        });
+
+        if(i === users.length - 1) {
+          res.send('Great success!');
+        }
+      });
+    });
   }
 }
