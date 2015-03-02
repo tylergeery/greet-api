@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    User = require('../models/user');
+    User = require('greet-shared/models/user');
 
 module.exports = {
   allUsers: function(req, res) {

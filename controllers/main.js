@@ -1,8 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	User = require('../models/user'),
-	Group = require('../models/group');
+	User = require('greet-shared/models/user'),
+	Group = require('greet-shared/models/group');
 
 module.exports = {
 	info: function(req,res) {
