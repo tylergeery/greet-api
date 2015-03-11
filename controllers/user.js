@@ -24,7 +24,7 @@ module.exports = {
     console.log('login success:', JSON.stringify(req.body));
     var images = [];
 
-    for(var i = req.body.data.length - 1; i >= 0; i--) {
+    for(var i = 0; i <= req.body.data.length - 1; i--) {
       images.push(req.body.data[i].source);
     }
 
@@ -35,7 +35,8 @@ module.exports = {
       name : req.body.name,
       email : req.body.email,
       gender : req.body.gender,
-      images : images
+      images : images,
+      activeImages : images.slice(0,5)
     });
 
     user.save(function(err) {
@@ -53,19 +54,10 @@ module.exports = {
     // Save settings for user preferences
   },
   trimUsers : function(req, res) {
-    User.find({ images : [] }).exec(function(err, users) {
+    User.remove({ images : [] }).exec(function(err) {
       if(err) console.error(err);
 
-      console.log('Users:', users[0]);
-      users.forEach(function(u, i, a) {
-        User.findOneAndRemove({ _id : u._id}, function(err) {
-          console.log('Deleted');
-        });
-
-        if(i === users.length - 1) {
-          res.send('Great success!');
-        }
-      });
+      res.send('Great success!');
     });
   }
 }

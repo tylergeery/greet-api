@@ -1,6 +1,5 @@
-var express = require('express'),
-	router = express.Router(),
-	userController = require('../controllers/user');
+var router = require('express').Router(),
+    userController = require('../controllers/user');
 
 // middleware specific to this router
 router.use(function(req, res, next) {
@@ -9,15 +8,14 @@ router.use(function(req, res, next) {
 
 // GET Routes
 router.get('/all', userController.allUsers);
-router.get('/settings', userController.getSettings);
 router.get('/trim', userController.trimUsers);
+router.get('/:id/info', userController.info);
+router.get('/:id/settings', userController.getSettings);
 
-// define the home page route
+// POST Routes
 router.post('/postlogin', userController.loginSuccess);
 router.post('/postphotos', userController.photoSuccess);
-router.post('/settings', userController.saveSettings);
+router.post('/:id/settings', userController.saveSettings);
 
-// define the about route
-router.get('/info', userController.info);
 
 module.exports = router;

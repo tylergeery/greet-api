@@ -29,15 +29,19 @@ if (process.env.NODE_ENV === 'production') {
 mongoose.connect(process.env.MONGO_URL);
 
 // Need route declarations instantiated here because they are dependent on above if/else
-var userRouter = require('./routes/user'),
-    groupRouter = require('./routes/group');
+var groupRouter = require('./routes/group'),
+    locationRouter = require('./routes/location'),
+    userRouter = require('./routes/user'),
+    venueRouter = require('./routes/venue');
 
 
 /*
- * Post Routes
+ * Route namespacing
  */
-app.use('/user', userRouter);
 app.use('/group', groupRouter);
+app.use('/location', locationRouter);
+app.use('/user', userRouter);
+app.use('/venue', venueRouter);
 
 /* Testing Route */
 app.get('/hello/:name', function(req, res) {

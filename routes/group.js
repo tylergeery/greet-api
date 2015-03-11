@@ -1,21 +1,18 @@
-var express = require('express'),
-	router = express.Router(),
-	User = require('../models/user'),
-	Group = require('../models/group');
+var router = require('express').Router(),
+    groupController = require('../controllers/group');
 
 // middleware specific to this router
 router.use(function(req, res, next) {
   next();
 });
 
-// define the home page route
-router.get('/:id', function(req, res) {
-  console.log('Get a specific group id');
-});
+// GET Routes
+router.get('/all', groupController.allGroups);
+router.get('/:id', groupController.getGroup);
+router.get('/:id/messages', groupController.getGroupMessages);
 
-// define the about route
-router.get('/new', function(req, res) {
-  console.log('Here is where we can create a new group');
-});
+// POST Routeroutes
+router.post('/new', groupController.newGroup);
+router.post(':id/message/new', groupController.newMessage);
 
 module.exports = router;
